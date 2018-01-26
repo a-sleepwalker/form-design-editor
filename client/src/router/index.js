@@ -1,21 +1,42 @@
+/* eslint-disable */
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
-import Editor from '@/components/Editor';
+import store from '../store';
 
 Vue.use(Router);
 
-export default new Router({
+const routes = {
+  mode: 'history',
+  base: '/',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HelloWorld
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: resolve => require(['../components/HelloWorld.vue'], resolve)
     },
     {
       path: '/editor',
       name: 'Editor',
-      component: Editor
+      component: resolve => require(['../components/Editor.vue'], resolve)
     }
   ]
+};
+const router = new Router(routes);
+router.beforeEach((to, from, next) => {
+  // console.log(to.path);
+  // if (to.path.indexOf('') > -1) {
+  //   if (store.state.auth.username === '') {
+  //     next('/home');
+  //   } else {
+  //     next();
+  //   }
+  // }
 });
+router.afterEach(route => {
+
+});
+export default router;
