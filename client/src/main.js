@@ -5,8 +5,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 import elementui from 'element-ui';
-// import 'element-ui/packages/theme-chalk/lib/index.css';
-// import 'font-awesome/css/font-awesome.min.css';
+import 'element-ui/packages/theme-chalk/lib/index.css';
 
 Vue.config.productionTip = false;
 Vue.use(elementui);
