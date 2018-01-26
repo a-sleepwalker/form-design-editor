@@ -7,7 +7,7 @@ const proxyTable = require('./proxy');
 module.exports = {
   dev: {
     // Paths
-    assetsSubDirectory: '../static',
+    assetsSubDirectory: '/static',
     assetsPublicPath: '/',
     proxyTable: proxyTable,
 

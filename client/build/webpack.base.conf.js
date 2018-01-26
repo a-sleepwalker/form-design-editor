@@ -71,7 +71,10 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          // 超级大坑 chrome 访问字体打包URL
+          // https://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts
+          // 以后使用ExtractTextPlugin配置路径，暂时用增加dataURL最大限制解决
+          limit: 100000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }

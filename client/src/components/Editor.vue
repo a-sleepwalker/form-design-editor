@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import 'font-awesome/css/font-awesome.min.css';
+  import 'simplemde/dist/simplemde.min.css';
   import marked from 'marked';
   import highlight from 'highlight.js';
   import SimpleMDE from 'simplemde';
@@ -15,18 +17,15 @@
     data() {
       return {
         marked: {},
-        sMDE: {}
+        sMDE: {},
+        content: 'markdown'
       };
     },
-    props: {
-      content: {
-        type: String
-      }
-    },
+    props: {},
     created() {
+      this.initConfig();
     },
     mounted() {
-      this.initConfig();
       this.loadContainer();
     },
     beforeDestroy() {
@@ -75,8 +74,8 @@
       loadContainer() {
         const _this = this;
         _sMDE = new SimpleMDE({
-          // initialValue: _this.content,
-          autoDownloadFontAwesome: true,
+          initialValue: _this.content,
+          autoDownloadFontAwesome: false,
           // element: _this.$refs['editor'],
           element: document.querySelector('#editor'),
           previewRender(plainText) {

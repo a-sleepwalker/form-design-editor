@@ -9,22 +9,13 @@
  *       changeOrigin:开启cros跨域访问
  *       pathRewrite：匹配地址
  *      }
- * 后期想对一些参数默认，在编写时方便开发管理
  */
 const proxyPath = 'http://127.0.0.1:3000/';
 const proxyTable = {
-  '**/*.view': {
+  '/api/**': {
     target: proxyPath,
     changeOrigin: true
   }
 };
 
 module.exports = proxyTable;
-
-/**
- * //重写属性
- pathRewrite:{
-          '^/login.view': '/data.json'
-        }
- *
- */
