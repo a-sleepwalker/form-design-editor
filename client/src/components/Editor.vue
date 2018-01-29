@@ -7,84 +7,73 @@
 <script>
   import 'font-awesome/css/font-awesome.min.css';
   import 'simplemde/dist/simplemde.min.css';
+  import 'highlight.js/styles/vs2015.css';
   import marked from 'marked';
   import highlight from 'highlight.js';
   import SimpleMDE from 'simplemde';
 
-  let _sMDE;
+  // let sMDE;
   export default {
     name: 'Editor',
     data() {
       return {
         marked: {},
         sMDE: {},
-        content: 'markdown'
+        content: ''
       };
     },
     props: {},
     created() {
-      this.initConfig();
     },
     mounted() {
-      this.loadContainer();
+      this.initEditor();
     },
     beforeDestroy() {
       this.destoryEditor();
     },
-    // watch: {
-    //   content(value) {
-    //     if (value !== '') {
-    //       this.$nextTick(() => {
-    //         if (this.sMDE && value !== this.sMDE.value()) {
-    //           this.sMDE.value(value);
-    //         }
-    //       });
-    //     }
-    //   }
-    // },
-    methods: {
-      initConfig() {
-        const _this = this;
-        const languages = ['cpp', 'xml', 'bash', 'coffeescript', 'css', 'markdown', 'http', 'java', 'javascript', 'json', 'less', 'makefile', 'nginx', 'php', 'python', 'scss', 'sql', 'stylus'];
-        languages.forEach(value => {
-          highlight.registerLanguage(value, require(`highlight.js/lib/languages/${value}`));
-        });
-        highlight.configure({
-          classPrefix: ''
-        });
-        marked.setOptions({
-          renderer: new marked.Renderer(),
-          gfm: true,
-          pedantic: false,
-          sanitize: false,
-          tables: true,
-          breaks: true,
-          smartLists: true,
-          smartypants: true,
-          highlight(code, lang) {
-            if (languages.includes(lang)) {
-              return highlight.highlight(lang, code).value;
-            } else {
-              return highlight.highlight(code).value;
+    watch: {
+      content(value) {
+        if (value !== '') {
+          this.$nextTick(() => {
+            if (this.sMDE && value !== this.sMDE.value()) {
+              this.sMDE.value(value);
             }
-          }
-        });
-        _this.marked = marked;
-      },
-      loadContainer() {
+          });
+        }
+      }
+    },
+    methods: {
+      initEditor() {
         const _this = this;
-        _sMDE = new SimpleMDE({
-          initialValue: _this.content,
+        _this.sMDE = new SimpleMDE({
           autoDownloadFontAwesome: false,
-          // element: _this.$refs['editor'],
-          element: document.querySelector('#editor'),
+          element: _this.$refs['editor'],
+          showIcons: ['code', 'table'],
+          tabSize: 4,
+          renderingConfig: {
+            codeSyntaxHighlighting: true
+          },
           previewRender(plainText) {
-            return _this.marked(plainText);
+            marked.setOptions({
+              renderer: new marked.Renderer(),
+              gfm: true,
+              tables: true,
+              breaks: true,
+              pedantic: false,
+              sanitize: false,
+              smartLists: true,
+              smartypants: false,
+              xhtml: false,
+              highlight(code) {
+                return highlight.highlightAuto(code).value;
+              }
+            });
+            return marked(plainText);
           },
           spellChecker: false
         });
-        _sMDE.codemirror.on('change', () => {
-          let value = _sMDE.value();
+        _this.sMDE.codemirror.on('change', () => {
+          let value = _this.sMDE.value();
           // if (_this.content !== value) {
           //   _this.content = value;
           // }
@@ -96,7 +85,8 @@
         });
       },
       destoryEditor() {
-        _sMDE.toTextArea();
+        this.sMDE.toTextArea();
+        this.sMDE = null;
         // let editor = document.querySelector('#editor');
         // editor.outerHTML = editor.outerHTML;
       }
