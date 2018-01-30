@@ -7,7 +7,7 @@
 <script>
   import 'font-awesome/css/font-awesome.min.css';
   import 'simplemde/dist/simplemde.min.css';
-  import 'highlight.js/styles/vs2015.css';
+  import 'highlight.js/styles/github.css';
   import marked from 'marked';
   import highlight from 'highlight.js';
   import SimpleMDE from 'simplemde';
@@ -17,7 +17,6 @@
     name: 'Editor',
     data() {
       return {
-        marked: {},
         sMDE: {},
         content: ''
       };
@@ -29,7 +28,7 @@
       this.initEditor();
     },
     beforeDestroy() {
-      this.destoryEditor();
+      this.destroyEditor();
     },
     watch: {
       content(value) {
@@ -50,9 +49,9 @@
           element: _this.$refs['editor'],
           showIcons: ['code', 'table'],
           tabSize: 4,
-          renderingConfig: {
-            codeSyntaxHighlighting: true
-          },
+          // renderingConfig: {
+          //   codeSyntaxHighlighting: true
+          // },
           previewRender(plainText) {
             marked.setOptions({
               renderer: new marked.Renderer(),
@@ -84,7 +83,7 @@
           this.content = value;
         });
       },
-      destoryEditor() {
+      destroyEditor() {
         this.sMDE.toTextArea();
         this.sMDE = null;
         // let editor = document.querySelector('#editor');
