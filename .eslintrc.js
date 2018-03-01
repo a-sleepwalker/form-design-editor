@@ -29,6 +29,8 @@ module.exports = {
     //IDE default format
     "indent": ['off'],
     "eqeqeq": 'error',
+    'no-undef':'off',
+    'no-unused-vars': 'off',
     'semi': ['error', 'always', {"omitLastInOneLineBlock": true}],
     'space-before-function-paren': ['error', {'anonymous': 'always', 'named': 'never', 'asyncArrow': 'always'}],
     // allow async-await

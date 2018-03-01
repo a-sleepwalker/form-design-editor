@@ -1,4 +1,7 @@
 /client/build/
 /client/config/
 /client/dist/
+
+/client/static
 /*.js
+*.min.js

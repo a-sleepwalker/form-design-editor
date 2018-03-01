@@ -1,0 +1,25 @@
+.ele-input,.ele-textarea,.ele-select{
+  /*width: 99%;*/
+  height: 32px;
+  border: 1px solid #bfcbd9;
+  border-radius: 4px;
+  text-indent: .5em;
+}
+.ele-textarea{
+  min-height:70px;
+}
+.ele-input:hover,.ele-textarea:hover{
+  border:1px solid #8391a5;
+}
+.ele-success{
+
+}
+.ele-warning{
+
+}
+.ele-primary{
+
+}
+.ele-danger{
+
+}
