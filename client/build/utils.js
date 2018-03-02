@@ -1,38 +1,38 @@
-'use strict'
-const path = require('path')
-const config = require('../config/index')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const packageConfig = require('../../package.json')
+'use strict';
+const path = require('path');
+const config = require('../config/index');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const packageConfig = require('../../package.json');
 const glob = require('glob');
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
-    : config.dev.assetsSubDirectory
+    : config.dev.assetsSubDirectory;
 
   return path.posix.join(assetsSubDirectory, _path)
-}
+};
 
 exports.cssLoaders = function (options) {
-  options = options || {}
+  options = options || {};
 
   const cssLoader = {
     loader: 'css-loader',
     options: {
       sourceMap: options.sourceMap
     }
-  }
+  };
 
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
       sourceMap: options.sourceMap
     }
-  }
+  };
 
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader];
 
     if (loader) {
       loaders.push({
@@ -69,11 +69,11 @@ exports.cssLoaders = function (options) {
 
 // Generate loaders for standalone style files (outside of .vue)
 exports.styleLoaders = function (options) {
-  const output = []
-  const loaders = exports.cssLoaders(options)
+  const output = [];
+  const loaders = exports.cssLoaders(options);
 
   for (const extension in loaders) {
-    const loader = loaders[extension]
+    const loader = loaders[extension];
     output.push({
       test: new RegExp('\\.' + extension + '$'),
       use: loader
@@ -81,7 +81,7 @@ exports.styleLoaders = function (options) {
   }
 
   return output
-}
+};
 
 exports.getEntriesNew = function (str) {
   let includePage = [
@@ -144,22 +144,22 @@ exports.getEntries = function (str) {
     'formdesign_user_index'
   ];
   let home = 'InternetPlus';
-  var entries, tmp, pathname;
+  let entries, tmp, pathname;
   entries = glob.sync(str).reduce((result, entry) => {
     tmp = entry.replace(/.+\/([^\/]+)\/$/, '$1');
     pathname = tmp;
     result[pathname] = path.resolve(entry);
     return result;
   }, {});
-  for (var name in entries) {
+  for (let name in entries) {
     let temp_name = name;
     temp_name = temp_name.replace("client/src/pages/", "").replace(/\//g, "_").replace(".js", "").replace("" + home + "_", "").replace("index_index", "index");
     entries[temp_name] = entries[name];
     delete entries[name];
   }
-  var entryres = {};
+  let entryres = {};
   if (includePage.length > 0) {
-    for (var name in entries) {
+    for (let name in entries) {
       for (let i = 0; i < includePage.length; i++) {
         if (name === includePage[i]) {
           entryres[name] = entries[name];
@@ -175,13 +175,13 @@ exports.getEntries = function (str) {
 };
 
 exports.createNotifierCallback = () => {
-  const notifier = require('node-notifier')
+  const notifier = require('node-notifier');
 
   return (severity, errors) => {
-    if (severity !== 'error') return
+    if (severity !== 'error') return;
 
-    const error = errors[0]
-    const filename = error.file && error.file.split('!').pop()
+    const error = errors[0];
+    const filename = error.file && error.file.split('!').pop();
 
     notifier.notify({
       title: packageConfig.name,

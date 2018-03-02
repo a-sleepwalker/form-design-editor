@@ -1,7 +1,6 @@
 import { Loading, MessageBox } from 'element-ui';
 import axios from 'axios';
-axios.defaults.timeout = 10000;
-axios.defaults.baseURL = '/';
+// axios.defaults.baseURL = 'http://127.0.0.1:3000/';
 // axios.defaults.baseURL =  process.env.BASE_URL;
 var loadinginstace;
 axios.interceptors.request.use(config => {

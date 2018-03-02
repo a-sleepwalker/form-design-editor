@@ -12,7 +12,7 @@
  */
 const proxyPath = 'http://127.0.0.1:3000/';
 const proxyTable = {
-  '/api/**': {
+  '/eform/**': {
     target: proxyPath,
     changeOrigin: true
   }
