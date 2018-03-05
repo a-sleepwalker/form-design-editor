@@ -83,13 +83,13 @@
           {NAME: '下拉菜单', index: '2', link: "leipiFormDesign.exec('select');", icon: 'form-icon-select'},
           {NAME: '单选框', index: '3', link: "leipiFormDesign.exec('radio');", icon: 'form-icon-radio'},
           {NAME: '复选框', index: '4', link: "leipiFormDesign.exec('checkbox');", icon: 'form-icon-checkbox'},
-          {NAME: '日期', index: '4', link: "leipiFormDesign.exec('datefield');", icon: 'form-icon-date'},
-          {NAME: '图片', index: '4', link: "leipiFormDesign.exec('img');", icon: 'form-icon-img'},
-          {NAME: '附件', index: '4', link: "leipiFormDesign.exec('attachment');", icon: 'form-icon-attachment'},
-          {NAME: '金额', index: '4', link: "leipiFormDesign.exec('money');", icon: 'form-icon-money'},
-          {NAME: '列表控件', index: '4', link: "leipiFormDesign.exec('inner_grid');", icon: 'form-icon-inner_grid'},
-          {NAME: '联系人', index: '4', link: "leipiFormDesign.exec('contact');", icon: 'form-icon-contact'},
-          {NAME: '计算公式', index: '4', link: "leipiFormDesign.exec('calculate');", icon: 'form-icon-calculate'}
+          // {NAME: '日期', index: '4', link: "leipiFormDesign.exec('datefield');", icon: 'form-icon-date'},
+          // {NAME: '图片', index: '4', link: "leipiFormDesign.exec('img');", icon: 'form-icon-img'},
+          // {NAME: '附件', index: '4', link: "leipiFormDesign.exec('attachment');", icon: 'form-icon-attachment'},
+          // {NAME: '金额', index: '4', link: "leipiFormDesign.exec('money');", icon: 'form-icon-money'},
+          {NAME: '列表控件', index: '4', link: "leipiFormDesign.exec('inner_grid');", icon: 'form-icon-inner_grid'}
+          // {NAME: '联系人', index: '4', link: "leipiFormDesign.exec('contact');", icon: 'form-icon-contact'},
+          // {NAME: '计算公式', index: '4', link: "leipiFormDesign.exec('calculate');", icon: 'form-icon-calculate'}
         ],
         currentFormName: '',
         formDesignEditor: ''
@@ -112,6 +112,7 @@
               ptablename: propJSON.PTABLENAME,
               parseContent: Base64.encode(' ')
             };
+            console.log(params.content);
             saveFormdesignById(params).then(res => {
               if (res.status === 'success') {
                 this.$message.success('保存成功！');

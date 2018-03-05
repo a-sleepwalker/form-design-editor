@@ -83,48 +83,6 @@ exports.styleLoaders = function (options) {
   return output
 };
 
-exports.getEntriesNew = function (str) {
-  let includePage = [
-    'formdesign_index',
-    'formdesign_dialogs_selectUser_index',
-    'formdesign_dialogs_newForm_index',
-    'formdesign_dialogs_propertyForm_index',
-    'formdesign_dialogs_openForm_index',
-    'formdesign_dialogs_text_index',
-    'formdesign_dialogs_textarea_index',
-    'formdesign_dialogs_select_index',
-    'formdesign_dialogs_radio_index',
-    'formdesign_dialogs_checkbox_index',
-    'formdesign_dialogs_innerGrid_index',
-    'formdesign_dialogs_pagination_index',
-    'formdesign_dialogs_commonField_index',
-    'formdesign_dialogs_lib_index',
-    'formdesign_user_index'
-  ];
-  let entries, tmp, pathname;
-  entries = glob.sync(str).reduce((res, entry) => {
-    tmp = entry.replace(/.+\/([^\/]+)\/$/, '$1');
-    pathname = tmp;
-    res[pathname] = path.resolve(entry);
-    return res;
-  }, {});
-  Object.keys(entries).forEach(value => {
-    let name = value.replace('client/src/pages/', '').replace(/\//g, '_').replace('.js', '').replace('index_index', 'index');
-    entries[name] = entries[value];
-    delete entries[value];
-  });
-  let entryres = {};
-  if (includePage.length > 0) {
-    includePage.forEach(value => {
-      entryres[value] = entries[value];
-    });
-  } else {
-    entryres = entries;
-  }
-  console.log(entryres);
-  return entryres;
-};
-
 exports.getEntries = function (str) {
   let includePage = [
     'formdesign_index',
