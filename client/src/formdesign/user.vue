@@ -14,7 +14,7 @@
       <div id="grid-content" v-html="gridContent"></div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false;saveGrid()">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = falsesaveGrid()">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -23,12 +23,16 @@
 <script>
   import {getFormdesignById} from '@/api/formdesign';
 
+  let Base64 = require('js-base64');
+  if (!Base64.decode) {
+    Base64 = Base64.Base64;
+  }
   export default {
     data() {
       return {
         activeName: '',
         dialogFormVisible: false,
-        uuid: 'b2753ec2d9ac11e7a7b0315298dc1c9c',
+        uuid: '',
         content: '',
         gridList: '',
         intro: '',
@@ -45,7 +49,7 @@
       let params = {uuid: _this.uuid};
       getFormdesignById(params).then(res => {
         if (res.status === 'success') {
-          _this.content = res.data.CONTENT.replace(/<body>|<\/body>/g, '');
+          _this.content = Base64.decode(res.data.CONTENT).replace(/<body>|<\/body>/g, '');
           let _DOM = window.document.createElement('div');
           _DOM.innerHTML = _this.content;
           let innerGrid = _DOM.querySelectorAll('[plugintype=inner_grid]');

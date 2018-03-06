@@ -128,7 +128,7 @@
                 MODULEID: res.data.MODULEID
               }));
               editor.execCommand('cleardoc');
-              editor.execCommand('insertHtml', res.data.CONTENT);
+              editor.execCommand('insertHtml', Base64.decode(res.data.CONTENT));
               dialog.close(false);
             } else {
               this.$message.error(res.message);

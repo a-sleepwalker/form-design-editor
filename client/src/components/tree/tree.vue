@@ -26,7 +26,7 @@
       },
       skin: {
         type: String,
-        default: ''
+        default: 'metroStyle'
       },
       selectNode: {
         type: String,

@@ -1,9 +1,10 @@
 const getAuthorUserList = {
-  'code': 'idt-oApp-5000',
+  'code': 'auth-access',
   'message': '操作成功',
   'data': [
-    {'USER_DISPLAYNAME': '互联网+政务服务', 'USER_CN': 'ipgs'},
-    {'USER_DISPLAYNAME': '用户', 'USER_CN': 'mock'}
+    {'USER_DISPLAYNAME': '用户1', 'USER_CN': 'mock1'},
+    {'USER_DISPLAYNAME': '用户2', 'USER_CN': 'mock2'},
+    {'USER_DISPLAYNAME': '用户3', 'USER_CN': 'mock3'}
   ]
 };
 module.exports = getAuthorUserList;

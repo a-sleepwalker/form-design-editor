@@ -1,5 +1,5 @@
 const deleteDesignformInfo = {
-  'code': 'idt-oApp-5000',
+  'code': 'auth-access',
   'message': '操作成功',
   'data': {
     'message': 'success'

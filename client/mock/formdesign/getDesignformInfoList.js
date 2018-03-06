@@ -1,13 +1,13 @@
 const getDesignformInfoList = {
-  'code': 'idt-oApp-5000',
+  'code': 'auth-access',
   'message': '操作成功',
   'data': [
     {
-      'PTABLENAME': 'test',
-      'NAME': 'test',
+      'PTABLENAME': ' ',
+      'NAME': 'resume',
       'PS': 'test',
       'UUID': '4d63bbc6c39311e7a1fa11444f3b8798',
-      'TABLENAME': 'test'
+      'TABLENAME': 'example'
     },
     {
       'PTABLENAME': 'tab2',

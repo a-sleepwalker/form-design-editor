@@ -1,5 +1,5 @@
 module.exports = {
-  'code': 'idt-formdesign-5000',
+  'code': 'auth-access',
   'message': '操作成功',
   'data': [
     {'id': '1', 'pId': '', 'fnType': 'fl', 'px': null, 'name': 'ssss'},

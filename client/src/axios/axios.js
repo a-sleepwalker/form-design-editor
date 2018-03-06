@@ -66,7 +66,7 @@ axios.interceptors.response.use(function (res) {
             locationflag = true;
             break;
           }
-        };
+        }
         if (!locationflag) {
           window.location.href = '/user/login/index.html';
         }
