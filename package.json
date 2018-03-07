@@ -2,10 +2,10 @@
   "name": "formdesigner",
   "version": "1.0.0",
   "description": "基于Vue实现的多页面表单设计器",
-  "author": "taowt",
+  "author": "taowt<guserting@gmail.com>",
   "private": true,
   "scripts": {
-    "webpack-dev-server": "webpack-dev-server --inline --config client/build/webpack.dev.conf.js",
+    "dev-client": "webpack-dev-server --inline --config client/build/webpack.dev.conf.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node client/build/build.js",
     "dev-server": "supervisor server/bin/www"

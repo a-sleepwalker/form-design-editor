@@ -1,12 +1,7 @@
-const path = require('path');
 const router = require('koa-router')();
-const mockData = require('../../client/mock/mockdata');
+const mockData = require('../mock/mockdata');
 
 Object.keys(mockData.data).forEach(reqUrl => {
-  router.get(mockData.path + reqUrl, async (ctx, next) => {
-    ctx.res.setHeader('Access-Control-Allow-Origin', '*');
-    ctx.body = mockData.data[reqUrl];
-  });
   router.post(mockData.path + reqUrl, async (ctx, next) => {
     ctx.res.setHeader('Access-Control-Allow-Origin', '*');
     ctx.body = mockData.data[reqUrl];

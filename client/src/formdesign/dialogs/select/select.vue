@@ -257,22 +257,6 @@
           v === this.rowSelected ? v.webData.underModified = true : v.webData.underModified = false;
         });
       },
-      resetForm() {
-//        let temp = this.formAttr.fieldTitle;
-//        this.$refs.formAttr.resetFields();
-//        this.formAttr.fieldTitle = temp;
-        this.formAttr.SQL = '';
-        this.rowSelected = '';
-        this.optionList = [];
-      },
-      formAutoComplete() {
-        this.optionList = [];
-        this.optionList.push({
-          displayVal: this.formAttr.fieldTitle,
-          saveVal: this.formAttr.fieldTitle,
-          webData: {}
-        });
-      },
       getTableList() {
       },
       getFieldList() {
