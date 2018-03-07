@@ -18,4 +18,3 @@ window.vue = new Vue({
   template: '<App/>',
   components: { App }
 });
-

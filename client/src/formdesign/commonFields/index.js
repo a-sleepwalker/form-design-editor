@@ -37,4 +37,4 @@ export const commonFields = [
     type: 'select',
     options: ['小于50人', '50~99人', '100~499人', '500~1999人', '2000人以上']
   }
-]
+];

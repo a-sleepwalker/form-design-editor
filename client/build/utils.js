@@ -65,7 +65,7 @@ exports.cssLoaders = function (options) {
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
-}
+};
 
 // Generate loaders for standalone style files (outside of .vue)
 exports.styleLoaders = function (options) {
@@ -97,11 +97,11 @@ exports.getEntries = function (str) {
     'formdesign_dialogs_checkbox_index',
     'formdesign_dialogs_innerGrid_index',
     'formdesign_dialogs_pagination_index',
-    'formdesign_dialogs_commonField_index',
+    'formdesign_dialogs_commonFields_index',
     'formdesign_dialogs_lib_index',
     'formdesign_user_index'
   ];
-  let home = 'InternetPlus';
+  let home = '/';
   let entries, tmp, pathname;
   entries = glob.sync(str).reduce((result, entry) => {
     tmp = entry.replace(/.+\/([^\/]+)\/$/, '$1');
@@ -111,7 +111,7 @@ exports.getEntries = function (str) {
   }, {});
   for (let name in entries) {
     let temp_name = name;
-    temp_name = temp_name.replace("client/src/pages/", "").replace(/\//g, "_").replace(".js", "").replace("" + home + "_", "").replace("index_index", "index");
+    temp_name = temp_name.replace('client/src/pages/', '').replace(/\//g, '_').replace('.js', '').replace('' + home + '_', '').replace('index_index', 'index');
     entries[temp_name] = entries[name];
     delete entries[name];
   }
