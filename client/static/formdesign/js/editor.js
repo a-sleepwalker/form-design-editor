@@ -23,9 +23,7 @@ var leipiEditor = UE.getEditor('myFormDesign', {
   elementPathEnabled: false,
   // 默认的编辑区域高度
   initialFrameHeight: ($('#myFormDesign').height() - 50),
-  iframeCssUrl: '/client/static/formdesign/css/styleSheet.css'
-  // initialFrameHeight:($(window).height()-200)
-  /// ,iframeCssUrl:"css/bootstrap/css/bootstrap.css" //引入自身 css使编辑器兼容你网站css
+  iframeCssUrl: '/client/static/formdesign/css/styleSheet.css' // 引入自身 css使编辑器兼容你网站css
   // 更多其他参数，请参考ueditor.config.js中的配置项
 });
 
@@ -45,11 +43,11 @@ var leipiFormDesign = {
       preg_attr = /(\w+)=\"(.?|.+?)\"/gi, preg_group = /<input.*?\/>/gi;
     if (!fields) fields = 0;
 
-    var template_parse = template, template_data = new Array(), add_fields = new Object(), checkboxs = 0;
+    var template_parse = template, template_data = [], add_fields = {}, checkboxs = 0;
 
     var pno = 0;
     template.replace(preg, function (plugin, p1, p2, p3, p4, p5, p6) {
-      var parse_attr = new Array(), attr_arr_all = new Object(), name = '', select_dot = '', is_new = false;
+      var parse_attr = [], attr_arr_all = {}, name = '', select_dot = '', is_new = false;
       var p0 = plugin;
       var tag = p6 || p4;
       // alert(tag + " \n- t1 - "+p1 +" \n-2- " +p2+" \n-3- " +p3+" \n-4- " +p4+" \n-5- " +p5+" \n-6- " +p6);
@@ -77,7 +75,7 @@ var leipiFormDesign = {
         } else {
           attr_arr_all[attr] = val;
         }
-        var oField = new Object();
+        var oField = {};
         oField[attr] = val;
         parse_attr.push(oField);
       });
@@ -95,7 +93,7 @@ var leipiFormDesign = {
         attr_arr_all['content'] = '<span leipiplugins="checkboxs"  title="' + attr_arr_all['title'] + '">';
         var dot_name = '', dot_value = '';
         p5.replace(preg_group, function (parse_group) {
-          var is_new = false, option = new Object();
+          var is_new = false, option = {};
           parse_group.replace(preg_attr, function (str0, k, val) {
             if (k == 'name') {
               if (val == 'leipiNewField') {
@@ -113,14 +111,14 @@ var leipiFormDesign = {
             option[k] = val;
           });
 
-          if (!attr_arr_all['options']) attr_arr_all['options'] = new Array();
+          if (!attr_arr_all['options']) attr_arr_all['options'] = [];
           attr_arr_all['options'].push(option);
           // if(!option['checked']) option['checked'] = '';
           var checked = option['checked'] != undefined ? 'checked="checked"' : '';
           attr_arr_all['content'] += '<input type="checkbox" name="' + option['name'] + '" value="' + option['value'] + '"  ' + checked + '/>' + option['value'] + '&nbsp;';
 
           if (is_new) {
-            var arr = new Object();
+            var arr = {};
             arr['name'] = option['name'];
             arr['leipiplugins'] = attr_arr_all['leipiplugins'];
             add_fields[option['name']] = arr;
@@ -145,7 +143,7 @@ var leipiFormDesign = {
           attr_arr_all['content'] = '<span leipiplugins="radios" name="' + attr_arr_all['name'] + '" title="' + attr_arr_all['title'] + '">';
           var dot = '';
           p5.replace(preg_group, function (parse_group) {
-            var option = new Object();
+            var option = {};
             parse_group.replace(preg_attr, function (str0, k, val) {
               if (k == 'value') {
                 attr_arr_all['value'] += dot + val;
@@ -154,7 +152,7 @@ var leipiFormDesign = {
               option[k] = val;
             });
             option['name'] = attr_arr_all['name'];
-            if (!attr_arr_all['options']) attr_arr_all['options'] = new Array();
+            if (!attr_arr_all['options']) attr_arr_all['options'] = [];
             attr_arr_all['options'].push(option);
             // if(!option['checked']) option['checked'] = '';
             var checked = option['checked'] != undefined ? 'checked="checked"' : '';
@@ -171,7 +169,7 @@ var leipiFormDesign = {
         template_parse = template_parse.replace('{|-', '');
         template_parse = template_parse.replace('-|}', '');
         if (is_new) {
-          var arr = new Object();
+          var arr = {};
           arr['name'] = name;
           arr['leipiplugins'] = attr_arr_all['leipiplugins'];
           add_fields[arr['name']] = arr;
@@ -399,16 +397,15 @@ var currentFormName = '';
 sessionStorage.removeItem('selectedUser');
 sessionStorage.removeItem('selectedUserName');
 sessionStorage.removeItem('current-form');
-leipiEditor.formPropConf = formPropConf;
 $(function () {
   $(window).on('storage', function () {
     if (sessionStorage.getItem('selectedUser')) {
       if (!userFlag) {
         $('#newform').click(function () {
-          leipiEditor.formPropConf.newForm();
+          formPropConf.newForm();
         }).removeClass('disabled');
         $('#openform').click(function () {
-          leipiEditor.formPropConf.openform();
+          formPropConf.openform();
         }).removeClass('disabled');
         userFlag = true;
       }
@@ -416,7 +413,7 @@ $(function () {
         if (!formFlag) {
           $('#saveform_').removeClass('disabled');
           $('#propertyform').click(function () {
-            leipiEditor.formPropConf.propertyform();
+            formPropConf.propertyform();
           }).removeClass('disabled');
           formFlag = true;
         }
@@ -440,7 +437,7 @@ $(function () {
   });
   $(window).trigger('storage');
   $('#selectuser').click(function () {
-    leipiEditor.formPropConf.selectuser();
+    formPropConf.selectuser();
   });
   $('#selectuser_alert').show();
   $('#currentUser').html('无');

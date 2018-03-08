@@ -369,7 +369,6 @@
     /* padding: 10px; */
     height: 100%;
     background-color: #ccc;
-    background: url('/client/static/formdesign/image/bg.png');
   }
 
   .form-icon-input {
