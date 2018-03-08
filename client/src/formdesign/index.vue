@@ -27,37 +27,31 @@
       </nav>
     </header>
     <div class="container">
-      <!-- <div class="row-fluid"> -->
-      <el-col :span="4">
-        <div class="left_nav">
-          <div class="left_title">
-            <span>控件库</span>
-          </div>
-          <ul>
-            <li v-for="item in leftlist" :key="item.name" :class="item.icon">
-              <a href="javascript:void(0);" :onclick="item.link" class="btn btn-link">{{item.NAME}}</a>
-            </li>
-          </ul>
-        </div>
+      <el-col :span="3">
+        <el-menu background-color="#fafafb" text-color="#909399" active-text-color="#409EFF">
+          <el-menu-item v-for="item in pluginList" :key="item.ORDER" :index="item.ORDER"
+                        @click="execPlugin(item.TYPE)">
+            <i class="form-icon" :class="item.ICON"></i>
+            <span slot="title">{{item.NAME}}</span>
+          </el-menu-item>
+        </el-menu>
       </el-col>
-      <el-col :span="20" class="wrap">
+      <el-col :span="21" class="wrap">
         <div class="right_box">
-          <div class="right_title">
-            <!-- <span class="title_text">表单设计区</span> -->
-            <p class="title_info">
-              <span class="title_info_user">数据用户<el-tooltip
-                content="针对多业务系统时，自定义表单可以提供多个业务系统进行集中使用。此时建成的表单可以选择供哪个用户进行使用。" placement="bottom" effect="light"><i
-                class="el-icon-information"></i></el-tooltip>：</span><a id="currentUser"></a>
-              <span class="title_info_form">表单名称：</span><a id="currentFormName"></a>
-            </p>
-          </div>
+          <p class="title_info">
+            <el-tooltip effect="light" placement="top-start"
+                        content="针对多业务系统时，自定义表单可以提供多个业务系统进行集中使用。此时建成的表单可以选择供哪个用户进行使用。">
+              <span class="title_info_user">数据用户：</span>
+            </el-tooltip>
+            <a id="currentUser"></a>
+            <span class="title_info_form">表单名称：</span>
+            <a id="currentFormName"></a>
+          </p>
           <input type="hidden" name="fields" id="fields" value="0">
           <div id="myFormDesign"></div>
         </div>
       </el-col>
-      <!-- </div>end row -->
-
-    </div><!--end container-->
+    </div>
   </div>
 </template>
 
@@ -73,26 +67,29 @@
     },
     data() {
       return {
-        leftlist: [
-          {NAME: '文本框', index: '0', link: "leipiFormDesign.exec('input');", icon: 'form-icon-input'},
-          {NAME: '多行文本', index: '1', link: "leipiFormDesign.exec('textarea');", icon: 'form-icon-textarea'},
-          // {NAME: '数字输入框', index: '1', link: "leipiFormDesign.exec('number');", icon: 'form-icon-number'},
-          {NAME: '下拉菜单', index: '2', link: "leipiFormDesign.exec('select');", icon: 'form-icon-select'},
-          {NAME: '单选框', index: '3', link: "leipiFormDesign.exec('radio');", icon: 'form-icon-radio'},
-          {NAME: '复选框', index: '4', link: "leipiFormDesign.exec('checkbox');", icon: 'form-icon-checkbox'},
-          // {NAME: '日期', index: '4', link: "leipiFormDesign.exec('datefield');", icon: 'form-icon-date'},
-          // {NAME: '图片', index: '4', link: "leipiFormDesign.exec('img');", icon: 'form-icon-img'},
-          // {NAME: '附件', index: '4', link: "leipiFormDesign.exec('attachment');", icon: 'form-icon-attachment'},
-          // {NAME: '金额', index: '4', link: "leipiFormDesign.exec('money');", icon: 'form-icon-money'},
-          {NAME: '列表控件', index: '5', link: "leipiFormDesign.exec('inner_grid');", icon: 'form-icon-inner_grid'}
-          // {NAME: '联系人', index: '4', link: "leipiFormDesign.exec('contact');", icon: 'form-icon-contact'},
-          // {NAME: '计算公式', index: '4', link: "leipiFormDesign.exec('calculate');", icon: 'form-icon-calculate'}
+        pluginList: [
+          {NAME: '文本框', ORDER: '1', TYPE: 'input', ICON: 'form-icon-input'},
+          {NAME: '多行文本', ORDER: '2', TYPE: 'textarea', ICON: 'form-icon-textarea'},
+          // {NAME: '数字输入框', ORDER: '1', TYPE: 'number', icon: 'form-icon-number'},
+          {NAME: '下拉菜单', ORDER: '3', TYPE: 'select', ICON: 'form-icon-select'},
+          {NAME: '单选框', ORDER: '4', TYPE: 'radio', ICON: 'form-icon-radio'},
+          {NAME: '复选框', ORDER: '5', TYPE: 'checkbox', ICON: 'form-icon-checkbox'},
+          // {NAME: '日期', ORDER: '4', TYPE: 'datefield', ICON: 'form-icon-date'},
+          // {NAME: '图片', ORDER: '4', TYPE: 'img', ICON: 'form-icon-img'},
+          // {NAME: '附件', ORDER: '4', TYPE: 'attachment', ICON: 'form-icon-attachment'},
+          // {NAME: '金额', ORDER: '4', TYPE: 'money', ICON: 'form-icon-money'},
+          {NAME: '列表控件', ORDER: '6', TYPE: 'inner_grid', ICON: 'form-icon-inner_grid'}
+          // {NAME: '联系人', ORDER: '4', TYPE: 'contact', ICON: 'form-icon-contact'},
+          // {NAME: '计算公式', ORDER: '4', TYPE: 'calculate', ICON: 'form-icon-calculate'}
         ],
         currentFormName: '',
         formDesignEditor: ''
       };
     },
     methods: {
+      execPlugin(TYPE) {
+        leipiFormDesign.exec(TYPE);
+      },
       saveForm() {
         if (userFlag && formFlag) {
           let content = leipiEditor.getContent();
@@ -126,20 +123,6 @@
   };
 </script>
 <style scoped>
-  body {
-    background: #eaeff2;
-    font-size: 12px;
-    height: 100%;
-  }
-
-  .wrap {
-    height: 100%;
-  }
-
-  a, a:hover {
-    text-decoration: none
-  }
-
   .selectuser-alert {
     display: inline-block;
     width: 94px;
@@ -164,28 +147,14 @@
     }
   }
 
-  .right_title {
-    height: 40px;
-    line-height: 40px;
-    border-bottom: 1px solid #999;
+  .title_info {
+    height: 55px;
+    line-height: 55px;
     padding-left: 20px;
     font-size: 16px;
     color: #607D8B;
     background-color: #f5f5f5;
-  }
-
-  .title_text {
-    float: left;
-  }
-
-  .title_info {
-    float: left;
-    font-size: 14px;
-    /* background-color: #ccc; */
-    height: 30px;
-    line-height: 30px;
-    border-radius: 4px;
-    margin: 5px 20px 0 0;
+    border-bottom: 1px solid #999;
   }
 
   #currentFormName {
@@ -234,23 +203,22 @@
 
   .nav__son {
     width: 100%;
-    padding-right: 0%;
-    height: 40px;
-    line-height: 38px;
-    border-bottom: 1px solid #ddd;
+    height: 55px;
+    line-height: 55px;
     text-align: right;
-    background: #eef1f6;
+    background: #fafafb;
+    border-bottom: 1px solid #ddd;
   }
 
   .nav__son .nav__son__a {
-    text-align: center;
-    padding: 0 10px;
-    height: 28px;
-    color: #607D8B;
-    font-size: 14px;
-    line-height: 28px;
     margin-right: 12px;
+    padding: 0 10px;
+    height: 39px;
+    line-height: 39px;
     display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    color: #607D8B;
   }
 
   .nav__son .nav__son__a,
@@ -305,7 +273,7 @@
 
   .container {
     width: 100%;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 56px);
     background-color: #f5f5f5;
   }
 
@@ -314,61 +282,15 @@
     cursor: not-allowed;
   }
 
-  /*left*/
-  .left_nav {
-    width: 100%;
-    height: 100%;
-    float: left;
-    border-right: 1px solid #ccc;
-  }
-
-  .left_title {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    text-indent: 1em;
-    border-bottom: 1px solid #ccc;
-    color: #607D8B;
-    background-color: #ddd;
-  }
-
-  .left_nav ul {
-    margin: 0;
-  }
-
-  .left_nav li {
-    width: 100%;
-    height: 39px;
-    line-height: 39px;
-    border-bottom: 1px solid #e5e5e5
-  }
-
-  .left_nav li a {
-    padding: 0 0 0 35%;
-    line-height: 39px;
-    color: #585858;
-    width: 70%;
-    display: block;
-    text-align: left;
-  }
-
-  .left_nav li:hover, .left_nav li.actived {
-    color: #2B7DBC;
-    background-color: #fff;
-    /* background: url(img/icon.png) #fff no-repeat 182px -625px; */
-  }
-
-  .left_nav li:hover a, .left_nav li.actived a {
-    text-decoration: none;
-    font-weight: bold;
-  }
-
   /*right*/
   .right_box {
-    /* padding: 10px; */
-    height: 100%;
-    background-color: #ccc;
+    background-color: #c8c8c8;
+  }
+
+  .form-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
   }
 
   .form-icon-input {
@@ -434,10 +356,5 @@
   .form-icon-calculate {
     background: url('/client/static/formdesign/image/计算.png') 20% no-repeat;
     background-size: 18px;
-  }
-
-  i {
-    color: #00BCD4;
-    cursor: pointer;
   }
 </style>
