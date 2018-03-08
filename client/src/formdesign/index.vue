@@ -173,6 +173,7 @@
 
   span.title_info_form {
     margin-left: 20px;
+    font-size: 14px;
     color: #20a0ff;
   }
 
