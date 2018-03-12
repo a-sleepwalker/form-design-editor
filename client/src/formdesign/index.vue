@@ -1,6 +1,7 @@
 <template>
-  <div class="wrap">
+  <div>
     <header>
+      <h1 class="page-header">表单设计器</h1>
       <nav class="nav__son">
         <span id="selectuser_alert"><span class="selectuser-alert">请选择用户</span></span>
         <a href="javascript:" class="nav__son__a" id="selectuser">
@@ -27,8 +28,8 @@
       </nav>
     </header>
     <div class="container">
-      <el-col :span="3">
-        <el-menu background-color="#fafafb" text-color="#909399" active-text-color="#409EFF">
+      <el-col :span="3" class="panel">
+        <el-menu class="plugin-list" background-color="#fafafb" text-color="#909399">
           <el-menu-item v-for="item in pluginList" :key="item.ORDER" :index="item.ORDER"
                         @click="execPlugin(item.TYPE)">
             <i class="form-icon" :class="item.ICON"></i>
@@ -36,20 +37,17 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="21" class="wrap">
-        <div class="right_box">
-          <p class="title_info">
-            <el-tooltip effect="light" placement="top-start"
-                        content="针对多业务系统时，自定义表单可以提供多个业务系统进行集中使用。此时建成的表单可以选择供哪个用户进行使用。">
-              <span class="title_info_user">数据用户：</span>
-            </el-tooltip>
-            <a id="currentUser"></a>
-            <span class="title_info_form">表单名称：</span>
-            <a id="currentFormName"></a>
-          </p>
-          <input type="hidden" name="fields" id="fields" value="0">
-          <div id="myFormDesign"></div>
-        </div>
+      <el-col :span="21" class="panel">
+        <p class="title_info">
+          <el-tooltip effect="light" placement="top-start"
+                      content="针对多业务系统时，自定义表单可以提供多个业务系统进行集中使用。此时建成的表单可以选择供哪个用户进行使用。">
+            <span class="title_info_user">数据用户：</span>
+          </el-tooltip>
+          <a id="currentUser"></a>
+          <span class="title_info_form">表单名称：</span>
+          <a id="currentFormName"></a>
+        </p>
+        <div id="myFormDesign"></div>
       </el-col>
     </div>
   </div>
@@ -147,6 +145,16 @@
     }
   }
 
+  .page-header {
+    margin-left: 36px;
+    line-height: 56px;
+    font-family: "Microsoft YaHei UI Light", serif;
+    font-size: 22px;
+    font-weight: normal;
+    float: left;
+    color: #909399;
+  }
+
   .title_info {
     height: 55px;
     line-height: 55px;
@@ -178,9 +186,9 @@
   }
 
   #myFormDesign {
-    width: 98%;
     margin: 6px auto;
-    height: calc(100% - 60px);
+    width: 98%;
+    height: calc(100vh - 56px - 56px - 12px);
   }
 
   .nav .nav__li a {
@@ -278,14 +286,17 @@
     background-color: #f5f5f5;
   }
 
+  .container .panel {
+    height: 100%;
+  }
+
+  .plugin-list {
+    height: 100%;
+  }
+
   .disabled {
     color: #ccc !important;
     cursor: not-allowed;
-  }
-
-  /*right*/
-  .right_box {
-    background-color: #c8c8c8;
   }
 
   .form-icon {
