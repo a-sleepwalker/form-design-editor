@@ -3,7 +3,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue';
-import App from '@/formdesign/user.vue';
+import App from '@/formdesign/preview.vue';
 import $ from 'jquery';
 import elementui from 'element-ui';
 import store from '@/store';

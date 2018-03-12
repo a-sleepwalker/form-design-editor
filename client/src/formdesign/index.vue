@@ -29,7 +29,7 @@
     </header>
     <div class="container">
       <el-col :span="3" class="panel">
-        <el-menu class="plugin-list" background-color="#fafafb" text-color="#909399">
+        <el-menu class="plugin-list" background-color="#fafafb" text-color="#909399" active-text-color="#909399">
           <el-menu-item v-for="item in pluginList" :key="item.ORDER" :index="item.ORDER"
                         @click="execPlugin(item.TYPE)">
             <i class="form-icon" :class="item.ICON"></i>

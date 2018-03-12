@@ -99,7 +99,7 @@ exports.getEntries = function (str) {
     'formdesign_dialogs_pagination_index',
     'formdesign_dialogs_commonFields_index',
     'formdesign_dialogs_lib_index',
-    'formdesign_user_index'
+    'formdesign_preview_index'
   ];
   let home = '/';
   let entries, tmp, pathname;

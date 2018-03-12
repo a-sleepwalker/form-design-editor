@@ -8,8 +8,8 @@
               <el-form-item label="表单类型 :">
                 <el-radio-group v-model="formType">
                   <el-radio label="登记单"></el-radio>
-                  <el-radio label="修改单"></el-radio>
-                  <el-radio label="浏览单"></el-radio>
+                  <el-radio label="表单类型2"></el-radio>
+                  <el-radio label="表单类型3"></el-radio>
                 </el-radio-group>
               </el-form-item>
             </el-col>

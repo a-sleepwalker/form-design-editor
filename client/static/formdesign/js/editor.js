@@ -252,7 +252,7 @@ var leipiFormDesign = {
       leipiEditor.sync();
       /* 同步内容 */
       // alert("你点击了预览,请自行处理....");
-      let newWin = window.open('/formdesign/user/index.html?formid=' + JSON.parse(sessionStorage.getItem('current-form')).UUID);
+      let newWin = window.open('/formdesign/preview/index.html?formid=' + JSON.parse(sessionStorage.getItem('current-form')).UUID);
 
     } else {
       alert('表单内容不能为空！');
