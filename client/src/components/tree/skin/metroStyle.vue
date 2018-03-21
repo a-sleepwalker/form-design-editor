@@ -6,9 +6,8 @@
 </template>
 
 <script>
+  import '../../../plugins/zTree/css/metroStyle/metroStyle.css';
   export default {};
 </script>
 
-<style scoped>
-  @import "../../../plugins/zTree/css/metroStyle/metroStyle.css";
-</style>
+<style scoped></style>

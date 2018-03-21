@@ -6,9 +6,8 @@
 </template>
 
 <script>
+  import '../../../plugins/zTree/css/zTreeStyle/zTreeStyle.css';
   export default {};
 </script>
 
-<style scoped>
-  @import "../../../plugins/zTree/css/zTreeStyle/zTreeStyle.css";
-</style>
+<style scoped></style>
