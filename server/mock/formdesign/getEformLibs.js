@@ -2,7 +2,13 @@ module.exports = {
   'code': 'auth-access',
   'message': '操作成功',
   'data': [
-    {'id': '1', 'pId': '', 'fnType': 'fl', 'px': null, 'name': 'ssss'},
+    {
+      'id': '1',
+      'pId': '',
+      'fnType': 'fl',
+      'px': null,
+      'name': 'ssss'
+    },
     {
       'id': '2',
       'pId': '1',
@@ -44,7 +50,6 @@ module.exports = {
       'fnType': 'fn',
       'px': null,
       'name': '函数'
-    },
-    {'id': 'f9b1d197d5b011e792aa777b5e1b5006', 'pId': '', 'fnType': 'fl', 'px': null, 'name': 'uij'}
+    }
   ]
 };

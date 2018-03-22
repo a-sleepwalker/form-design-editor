@@ -174,9 +174,11 @@
           setTimeout(function () {
             $('.grid-btn-add-' + tableName).click(function () {
               _this.dialogFormVisible = true;
-              getFormdesignById({uuid: gridForm}).then(res => {
+              // let params = {uuid: gridForm};
+              let params = {uuid: '1c8efab6c37d11e7b7517b16d465tab4'};
+              getFormdesignById(params).then(res => {
                 if (res.status === 'success') {
-                  _this.gridContent = res.data.CONTENT.replace(/<body>|<\/body>/g, '');
+                  _this.gridContent = Base64.decode(res.data.CONTENT).replace(/<body>|<\/body>/g, '');
                 } else {
                   _this.$message.error(res.message);
                 }
