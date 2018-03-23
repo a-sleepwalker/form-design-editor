@@ -17,7 +17,7 @@
             <el-col :span="12">
               <el-form-item label="所属主表 :">
                 <el-col :span="22">
-                  <el-select v-model="formAttr.attachedTable" @change="getDesignformInfoListImpl()getFieldsImpl()"
+                  <el-select v-model="formAttr.attachedTable" @change="getDesignformInfoListImplgetFieldsImpl"
                              filterable
                              size="small" :disabled="formAttr.moduleId===''">
                     <el-option v-for="item in attachedTableList" :key="item.TABLE_ID"
