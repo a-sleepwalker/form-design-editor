@@ -17,5 +17,6 @@ mockData.data['saveDesignformLibsFL'] = require('./formdesign/saveDesignformLibs
 mockData.data['deleteDesignformLibs'] = require('./formdesign/deleteDesignformLibs');
 mockData.data['deleteDesignformFL'] = require('./formdesign/deleteDesignformFL');
 mockData.data['updateDesignformName'] = require('./formdesign/updateDesignformName');
+mockData.data['getFieldsInfoByFieldAttachTableList'] = require('./formdesign/getFieldsInfoByFieldAttachTableList');
 
 module.exports = mockData;

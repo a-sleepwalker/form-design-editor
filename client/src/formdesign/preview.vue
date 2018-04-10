@@ -127,7 +127,7 @@
       },
       getGridList() {
         let tbodyList = [
-          {scr: 'ddd', bm: 'ccc', zj: 'bbb', abn: 'www'}
+          {period: '', duty: ''}
         ];
         return tbodyList;
       },

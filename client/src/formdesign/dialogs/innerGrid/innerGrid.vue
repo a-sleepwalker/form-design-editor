@@ -17,7 +17,7 @@
             <el-col :span="12">
               <el-form-item label="所属主表 :">
                 <el-col :span="22">
-                  <el-select v-model="formAttr.attachedTable" @change="getDesignformInfoListImplgetFieldsImpl"
+                  <el-select v-model="formAttr.attachedTable" @change="getDesignformInfoListImpl"
                              filterable
                              size="small" :disabled="formAttr.moduleId===''">
                     <el-option v-for="item in attachedTableList" :key="item.TABLE_ID"
@@ -34,7 +34,7 @@
             <el-col :span="12">
               <el-form-item label="表单选择 :">
                 <el-col :span="22">
-                  <el-select v-model="formAttr.formId" size="small" filterable :disabled="formAttr.attachedTable===''">
+                  <el-select v-model="formAttr.formId" size="small" filterable :disabled="formAttr.attachedTable===''" @change="getFieldsImpl">
                     <el-option v-for="item in formList" :key="item.UUID" :label="item.NAME"
                                :value="item.UUID"></el-option>
                   </el-select>
@@ -188,34 +188,12 @@
         rowSelected: '',
         fieldList: [],
         formList: [],
-        attachedTableList: [
-//          {
-//            "TABLE_NAME": "web_scgl",
-//            "TABLE_ID": "47c2c4885e5bb11c015eb7723e2905be",
-//            "TABLE_EXTERNAL_NAME": "收藏管理"
-//          }
-        ],
-        moduleList: [
-//          {
-//            "CATALOG_NAME": "专项资金",
-//            "CATALOG_PROJECTID": "47c2c44d41aa68db0141b5028512001c",
-//            "CATALOG_ID": "47c2c4885d778155015d81a5f8c60008"
-//          },
-//          {
-//            "CATALOG_NAME": "负面清单",
-//            "CATALOG_PROJECTID": "47c2c44d41aa68db0141b5028512001c",
-//            "CATALOG_ID": "47c2c4885d778155015d81a45b060004"
-//          },
-//          {
-//            "CATALOG_NAME": "事项管理",
-//            "CATALOG_PROJECTID": "47c2c44d41aa68db0141b5028512001c",
-//            "CATALOG_ID": "47c2c40b5ca48980015ca57339dc0108"
-//          }
-        ],
+        attachedTableList: [],
+        moduleList: [],
         formAttr: {
           moduleId: '',
           attachedTable: '',
-          formId: '1c8efab6c37d11e7b7517b16d465tab4',
+          formId: '',
           toolBtns: [],
           width: '',
           widthUnit: 'px',
@@ -366,9 +344,9 @@
         });
       },
       getFieldsImpl() {
-        getFieldsInfoByFieldAttachTableList('47c2c4885e5bb11c015eb7723e2905be').then(res => {
+        getFieldsInfoByFieldAttachTableList('uuid').then(res => {
           if (res.status === 'success') {
-            this.fieldList = res.data.DataList;
+            this.fieldList = res.data;
           } else {
             this.$message.error(res.message);
           }

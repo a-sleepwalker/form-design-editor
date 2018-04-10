@@ -1,5 +1,5 @@
 .ele-input,.ele-textarea,.ele-select{
-  width: 99%;
+  width: 98% !important;
   height: 32px;
   border: 1px solid #bfcbd9;
   border-radius: 4px;

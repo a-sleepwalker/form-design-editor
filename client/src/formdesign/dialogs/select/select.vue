@@ -190,7 +190,7 @@
           isRequired: '',
           eventType: '',
           width: 100,
-          selected: ''
+          selected: false
         },
         formRules: {
           fieldTitle: [{
